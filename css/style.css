@@ -241,6 +241,24 @@ section {
   height: 42px;
 }
 
+/* カード全体をリンクにしたタイプ（トップページ用・DLページへ遷移） */
+.app-card-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.app-card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+.app-cta {
+  display: inline-block;
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 /* ---------- 本文ページ（プライバシー・お問い合わせ） ---------- */
 .page {
   max-width: 760px;
