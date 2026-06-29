@@ -4,31 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- favicon / アイコン -->
-    <link rel="icon" href="./assets/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="./assets/favicon-32.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="icon" href="../assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="../assets/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
     <meta name="theme-color" content="#171716" />
     <!-- OGP -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="misoclub" />
-    <meta property="og:image" content="./assets/og-image.png" />
+    <meta property="og:image" content="../assets/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>アプリ一覧 | misoclub</title>
     <meta name="description" content="misoclub がリリースしているアプリの一覧です。" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <!-- ヘッダー -->
     <header class="site-header">
       <div class="container">
-        <a href="./index.html" class="brand"
-          ><img src="./assets/logo.png" alt="misoclub" class="brand-logo"
+        <a href="../index.html" class="brand"
+          ><img src="../assets/logo.png" alt="misoclub" class="brand-logo"
         /></a>
         <nav class="nav">
-          <a href="./apps.html">アプリ</a>
-          <a href="./index.html#about">私たちについて</a>
-          <a href="./contact.html">お問い合わせ</a>
+          <a href="./index.html">アプリ</a>
+          <a href="../index.html#about">私たちについて</a>
         </nav>
       </div>
     </header>
@@ -40,14 +39,15 @@
 
         <div class="app-list">
           <!--
-            アプリを増やすときはこの <article> を複製してください。
-            ・app-icon: assets/apps/<アプリ>.png（正方形・推奨 256px 以上）
+            アプリを増やすときは apps/_template/ フォルダを apps/<アプリ>/ にコピーし、
+            このページにも <article> を複製して追記してください。
+            ・アイコン: apps/<アプリ>/icon.png（正方形・推奨 256px 以上）
             ・ストアバッジの href="#" を各ストアの URL に差し替え
           -->
           <article class="app-card">
             <img
               class="app-icon"
-              src="./assets/apps/nihon-tabinikki.png"
+              src="./nihon-tabinikki/icon.png"
               alt="日本旅日記 アイコン"
               width="96"
               height="96"
@@ -57,10 +57,10 @@
               <p>旅の行き先・日程・写真・メモを、端末内だけに記録できる旅日記アプリ。</p>
               <div class="store-badges">
                 <a href="#" aria-label="App Store でダウンロード">
-                  <img src="./assets/app-store-badge.svg" alt="App Store でダウンロード" />
+                  <img src="../assets/app-store-badge.svg" alt="App Store でダウンロード" />
                 </a>
                 <a href="#" aria-label="Google Play で手に入れよう">
-                  <img src="./assets/google-play-badge.png" alt="Google Play で手に入れよう" />
+                  <img src="../assets/google-play-badge.png" alt="Google Play で手に入れよう" />
                 </a>
               </div>
             </div>
@@ -69,7 +69,7 @@
           <article class="app-card">
             <img
               class="app-icon"
-              src="./assets/apps/memoria.png"
+              src="./memoria/icon.png"
               alt="メモリア アイコン"
               width="96"
               height="96"
@@ -79,10 +79,10 @@
               <p>記念日や大切な日までの日数を、絵文字や通知とともにカウントダウン。</p>
               <div class="store-badges">
                 <a href="#" aria-label="App Store でダウンロード">
-                  <img src="./assets/app-store-badge.svg" alt="App Store でダウンロード" />
+                  <img src="../assets/app-store-badge.svg" alt="App Store でダウンロード" />
                 </a>
                 <a href="#" aria-label="Google Play で手に入れよう">
-                  <img src="./assets/google-play-badge.png" alt="Google Play で手に入れよう" />
+                  <img src="../assets/google-play-badge.png" alt="Google Play で手に入れよう" />
                 </a>
               </div>
             </div>
@@ -95,9 +95,8 @@
     <footer class="site-footer">
       <div class="container">
         <nav>
-          <a href="./index.html">ホーム</a>
-          <a href="./apps.html">アプリ</a>
-          <a href="./contact.html">お問い合わせ</a>
+          <a href="../index.html">ホーム</a>
+          <a href="./index.html">アプリ</a>
         </nav>
         <p>&copy; <span id="year"></span> misoclub</p>
       </div>

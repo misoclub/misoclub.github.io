@@ -316,9 +316,14 @@ section {
     calc(48px + env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
   background: linear-gradient(180deg, #fff6ea 0%, var(--color-bg) 100%);
 }
-.dl-logo {
-  height: 40px;
-  margin-bottom: 40px;
+/* アプリのスプラッシュ画像（縦長）。端末画面のように角丸＋影で表示 */
+.dl-splash {
+  width: auto;
+  max-width: 260px;
+  max-height: 46vh;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+  margin-bottom: 32px;
 }
 .dl-page h1 {
   font-size: 1.9rem;
@@ -417,9 +422,10 @@ section {
   .dl-page h1 {
     font-size: 1.6rem;
   }
-  .dl-logo {
-    height: 34px;
-    margin-bottom: 32px;
+  .dl-splash {
+    max-width: 220px;
+    max-height: 42vh;
+    margin-bottom: 28px;
   }
 }
 
