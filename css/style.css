@@ -12,6 +12,7 @@
   --color-accent-dark: #c9743f;
   --color-border: #ece7da;
   --color-card: #ffffff;
+  --color-dark: #171716;        /* ロゴの背景色に合わせたダーク */
 
   --max-width: 960px;
   --radius: 14px;
@@ -28,6 +29,11 @@
 
 html {
   scroll-behavior: smooth;
+  /* 横スクロール（はみ出し）を防ぐ。スマホで重要 */
+  overflow-x: hidden;
+  /* 端末の自動文字サイズ拡大を無効化（iOS の横向き等で崩れない） */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -36,7 +42,16 @@ body {
   color: var(--color-fg);
   background: var(--color-bg);
   line-height: 1.8;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* タップ時の青いハイライトを抑える */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* タップ領域を最低 44px 確保（Apple HIG 推奨） */
+a,
+button {
+  touch-action: manipulation;
 }
 
 a {
@@ -57,7 +72,9 @@ img {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 20px;
+  /* セーフエリア（ノッチ・丸角）を避けつつ左右余白を確保 */
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
 }
 
 section {
@@ -69,9 +86,8 @@ section {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 253, 247, 0.9);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-dark);
+  border-bottom: 1px solid #000;
 }
 .site-header .container {
   display: flex;
@@ -80,17 +96,24 @@ section {
   height: 64px;
 }
 .brand {
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--color-fg);
+  display: inline-flex;
+  align-items: center;
 }
 .brand:hover {
   text-decoration: none;
 }
+.brand-logo {
+  height: 30px;
+  display: block;
+}
 .nav a {
   margin-left: 24px;
-  color: var(--color-fg);
+  color: #f3f0e9;
   font-size: 0.95rem;
+}
+.nav a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
 }
 
 /* ---------- ヒーロー ---------- */
@@ -216,16 +239,188 @@ section {
   color: var(--color-muted);
 }
 
-/* ---------- レスポンシブ ---------- */
+/* ---------- ストアバッジ ---------- */
+.store-badges {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* バッジの高さをそろえる基準。Google Play バッジ画像もこの高さに合わせる */
+.store-badges .google-play img {
+  height: 58px;
+  display: block;
+}
+/* App Store バッジ（Apple 公式バッジ画像が用意できるまでの自作バッジ） */
+.appstore-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 58px;
+  padding: 0 18px;
+  background: #000;
+  border: 1px solid #a6a6a6;
+  border-radius: 11px;
+  color: #fff;
+  box-sizing: border-box;
+}
+.appstore-badge:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+.appstore-badge svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+.appstore-badge .l1 {
+  display: block;
+  font-size: 11px;
+  line-height: 1.1;
+}
+.appstore-badge .l2 {
+  display: block;
+  font-size: 19px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- ダウンロードページ（アプリからのシェア用） ---------- */
+.dl-page {
+  min-height: 100vh;
+  min-height: 100svh; /* モバイルのアドレスバー増減で崩れないように */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(48px + env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+    calc(48px + env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  background: linear-gradient(180deg, #fff6ea 0%, var(--color-bg) 100%);
+}
+.dl-logo {
+  height: 40px;
+  margin-bottom: 40px;
+}
+.dl-page h1 {
+  font-size: 1.9rem;
+  margin: 0 0 8px;
+}
+.dl-page .dl-desc {
+  color: var(--color-muted);
+  margin: 0 0 36px;
+}
+.dl-page .store-badges {
+  margin-bottom: 40px;
+}
+.dl-others {
+  font-size: 0.95rem;
+}
+
+/* ===========================================================
+   レスポンシブ（スマホ最適化）
+   このサイトはスマホ閲覧を主用途として最適化しています。
+   =========================================================== */
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2rem;
+  /* セクション余白を詰める */
+  section {
+    padding: 44px 0;
+  }
+
+  /* ヘッダー：ロゴとナビを詰めて 1 行に収める */
+  .brand-logo {
+    height: 26px;
   }
   .nav a {
-    margin-left: 16px;
-    font-size: 0.85rem;
+    margin-left: 14px;
+    font-size: 0.82rem;
   }
-  section {
-    padding: 48px 0;
+
+  /* ヒーロー */
+  .hero {
+    padding: 64px 0 56px;
+  }
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* 見出し */
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* アプリカード：1 カラムで縦積み */
+  .app-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .app-card {
+    padding: 22px;
+  }
+
+  /* ボタンはタップしやすいよう大きめ＆幅広に */
+  .btn {
+    padding: 14px 28px;
+  }
+
+  /* 本文ページ（プライバシー等）の余白調整 */
+  .page {
+    padding: 40px 20px 64px;
+  }
+  .page h1 {
+    font-size: 1.6rem;
+  }
+  .page h2 {
+    font-size: 1.15rem;
+  }
+
+  /* ストアバッジ：縦積み・横いっぱいでタップしやすく */
+  .store-badges {
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .store-badges .google-play,
+  .appstore-badge {
+    width: 100%;
+  }
+  .store-badges .google-play img {
+    height: auto;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .appstore-badge {
+    justify-content: center;
+    height: 60px;
+  }
+
+  /* ダウンロードページ */
+  .dl-page h1 {
+    font-size: 1.6rem;
+  }
+  .dl-logo {
+    height: 34px;
+    margin-bottom: 32px;
+  }
+}
+
+/* さらに小さい端末（iPhone SE 等） */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+  .nav a {
+    margin-left: 10px;
+    font-size: 0.78rem;
   }
 }
