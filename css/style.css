@@ -170,22 +170,13 @@ section {
   margin: 0 0 40px;
 }
 
-/* ---------- アプリカード一覧 ---------- */
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
+/* ---------- アプリカード（共通の見た目） ---------- */
 .app-card {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
-  transition: transform 0.2s ease;
-}
-.app-card:hover {
-  transform: translateY(-4px);
 }
 .app-card h3 {
   margin: 0 0 8px;
@@ -195,6 +186,59 @@ section {
   color: var(--color-muted);
   font-size: 0.95rem;
   margin: 0 0 16px;
+}
+
+/* トップページの紹介グリッド（シンプル版・ホバーで浮く） */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+.app-grid .app-card {
+  transition: transform 0.2s ease;
+}
+.app-grid .app-card:hover {
+  transform: translateY(-4px);
+}
+
+/* アプリ一覧ページのリッチカード（アイコン＋情報＋ストアバッジ） */
+.app-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.app-list .app-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.app-icon {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  border-radius: 22%; /* iOS 風の角丸 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+.app-info {
+  flex: 1;
+  min-width: 0;
+}
+.app-info h3 {
+  margin: 0 0 6px;
+}
+.app-info p {
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+}
+/* カード内のストアバッジは左寄せ・やや小さめ */
+.app-card .store-badges {
+  justify-content: flex-start;
+  gap: 12px;
+}
+.app-card .store-badges img {
+  height: 42px;
 }
 
 /* ---------- 本文ページ（プライバシー・お問い合わせ） ---------- */
@@ -325,13 +369,32 @@ section {
     font-size: 1.5rem;
   }
 
-  /* アプリカード：1 カラムで縦積み */
+  /* トップの紹介グリッド：1 カラムで縦積み */
   .app-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   .app-card {
     padding: 22px;
+  }
+
+  /* アプリ一覧のリッチカード：アイコンを上に、中央寄せ */
+  .app-list .app-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+  /* flex 縦並びで子が内容幅にならないよう全幅にして折り返させる */
+  .app-info {
+    width: 100%;
+  }
+  .app-icon {
+    width: 84px;
+    height: 84px;
+  }
+  .app-card .store-badges {
+    justify-content: center;
   }
 
   /* ボタンはタップしやすいよう大きめ＆幅広に */
@@ -350,13 +413,16 @@ section {
     font-size: 1.15rem;
   }
 
-  /* ストアバッジ：縦積み・中央寄せでタップしやすく */
+  /* ストアバッジ：スマホでも横並び。両ストアとも同じ高さ。
+     はみ出さないよう高さを控えめに（端末幅で折り返しも許可） */
   .store-badges {
-    flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
   .store-badges img {
-    height: 56px;
+    height: 42px;
+  }
+  .app-card .store-badges img {
+    height: 38px;
   }
 
   /* ダウンロードページ */
@@ -375,7 +441,16 @@ section {
     font-size: 1.7rem;
   }
   .nav a {
-    margin-left: 10px;
-    font-size: 0.78rem;
+    margin-left: 9px;
+    font-size: 0.74rem;
+  }
+  .brand-logo {
+    height: 22px;
+  }
+  .store-badges img {
+    height: 38px;
+  }
+  .app-card .store-badges img {
+    height: 34px;
   }
 }
