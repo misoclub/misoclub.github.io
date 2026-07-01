@@ -63,7 +63,7 @@ magick logo.png -resize 760x -background "#171716" -gravity center -extent 1200x
 2. その中の `index.html`（DLページ）と `privacy.html`（ポリシー）を編集（アプリ名・各ストアの URL（`href="#"`）・ポリシー本文）
 3. **`icon.png`**（正方形・256px 以上）と **`splash.jpg`**（縦長）を同フォルダに置く
 4. **`apps/index.html`**（`/apps/` 一覧）の `<article class="app-card">` を 1 つ複製し、アイコンのパス（`./<アプリ>/icon.png`）・アプリ名・説明・各ストアの URL を差し替え
-5. **トップページ `index.html`** の `#apps` セクションにも `<div class="app-card app-card--link">` を 1 つ複製して追記（カードのリンク先＝`./apps/<アプリ>/index.html`、鍵アイコンのリンク先＝`./apps/<アプリ>/privacy.html`、アイコン・アプリ名・説明を差し替え）。**アプリはトップと `/apps/` の 2 か所に載る**ので、両方の更新を忘れないこと。
+5. **トップページ `index.html`** の `#apps` セクションにも `<div class="app-card app-card--link">` を 1 つ複製して追記（カードのリンク先＝`./apps/<アプリ>/`、鍵アイコンのリンク先＝`./apps/<アプリ>/privacy.html`、アイコン・アプリ名・説明を差し替え）。**アプリはトップと `/apps/` の 2 か所に載る**ので、両方の更新を忘れないこと。
 
 ストアバッジは App Store / Google Play とも公式バッジ画像を使い、両者を**同じ高さ・横並び**で表示します（一覧カード内、および各アプリの DLページ）。
 
